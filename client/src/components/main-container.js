@@ -8,7 +8,7 @@ const MainComponent = (props) => {
       <h1>testPilot</h1>
       <SomeComponentForTestPilotNoTest color={"red"} size="3" />
       <br />
-      <SomeComponentForTestPilot color={"red"} size="8" />
+      <SomeComponentForTestPilot color={"red"} size="888" />
     </div>
   );
 };

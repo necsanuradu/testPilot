@@ -4,7 +4,6 @@ import SomeComponentForTestPilot from "../components/some-component";
 import testPilot from "../testPilot/test-pilot";
 testPilot.environment = "development-test";
 
-
 // testPilot begin [ thirdTest ]
 test("check it renders", () => {
     const context = render(<SomeComponentForTestPilot />);
