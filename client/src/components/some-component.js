@@ -29,8 +29,8 @@ const SomeComponentForTestPilot = (props) => {
   testPilot.recordState(color, "secondTest");
 
   return testPilot.render(
-    <div test-suite="thirdTest">
-      <div className="card bg-primary" test-suite="firstTest">
+    <div class="card mx-5" test-suite="thirdTest">
+      <div className="card bg-light" test-suite="firstTest">
         {color}
       </div>
       <div className="card-body">{props.size}</div>
