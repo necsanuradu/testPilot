@@ -29,7 +29,7 @@ const SomeComponentForTestPilot = (props) => {
   testPilot.recordState(color, "secondTest");
 
   return testPilot.render(
-    <div class="card mx-5" test-suite="thirdTest">
+    <div classNames="card mx-5" test-suite="thirdTest">
       <div className="card bg-light" test-suite="firstTest">
         {color}
       </div>
