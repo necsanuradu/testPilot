@@ -4,6 +4,7 @@ import SomeComponentForTestPilot from "../components/some-component";
 import testPilot from "../testPilot/test-pilot";
 testPilot.environment = "development-test";
 
+
 // testPilot begin [ thirdTest ]
 test("check it renders", () => {
     const context = render(<SomeComponentForTestPilot />);
@@ -38,7 +39,7 @@ test("check the component is a div", () => {
 // testPilot begin [ secondTest ]
 test("state has changed on hover", () => {
     const context = render(<SomeComponentForTestPilot color="redx" />);
-    expect(testPilot.stateRecords["secondTest"]).not.toEqual("red");
+    expect(testPilot.stateRecords["secondTest"]).not.toEqual(1);
     
 });
 // testPilot end 

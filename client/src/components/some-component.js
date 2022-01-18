@@ -18,7 +18,7 @@ testPilot.testSuite = {
   ],
   secondTest: {
     test: "state has changed on hover",
-    state: ["red", "toEqual", "not"],
+    state: [1, "toEqual", "not"],
     props: { color: "redx" },
   },
   thirdTest: {},

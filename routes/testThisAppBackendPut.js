@@ -88,16 +88,16 @@ getExpectFor = {
   Property: (expect) => {
     return `expect(field${
       expect[0] !== "" ? "." + expect[0] : ""
-    })${getExpectFor.deny(expect)}.${getExpectFor.match(expect)}("${
-      expect[1]
-    }");`;
+    })${getExpectFor.deny(expect)}.${getExpectFor.match(expect)}(${
+      isString(expect[1]) ? '"' + expect[1] + '"' : expect[1]
+    });`;
   },
   Attribute: (expect) => {
     return `expect(field${
       expect[0] !== "" ? `.getAttribute("${expect[0]}")` : ""
-    })${getExpectFor.deny(expect)}.${getExpectFor.match(expect)}("${
-      expect[1]
-    }");`;
+    })${getExpectFor.deny(expect)}.${getExpectFor.match(expect)}(${
+      isString(expect[1]) ? '"' + expect[1] + '"' : expect[1]
+    });`;
   },
   React: (expect) => {
     expect.splice(0, 0, "", "");
@@ -116,7 +116,6 @@ getExpectFor = {
 };
 
 const addRenderTest = (testBody, set) => {
-  console.log(set);
   if ("expect6" in set && Array.isArray(set["expect6"])) {
     let manyAndSign = set["expect6"][0].length < 1 ? [0, ">"] : [];
     switch (set["expect6"][0]) {
@@ -158,13 +157,19 @@ const testBodyRender = (testBody, testBlock, set, indent) => {
   return testBody;
 };
 
+const isString = (value) => {
+  return Object.prototype.toString.call(value) === "[object String]";
+};
+
 const testBodyState = (testBody, testBlock, set) => {
   let expect = set["expect4"];
   expect.splice(0, 0, "");
   testBody.push(
     `expect(testPilot.stateRecords["${testBlock.testName}"])${getExpectFor.deny(
       expect
-    )}.${getExpectFor.match(expect)}("${expect[1]}");`
+    )}.${getExpectFor.match(expect)}(${
+      isString(expect[1]) ? '"' + expect[1] + '"' : expect[1]
+    });`
   );
   return testBody;
 };
