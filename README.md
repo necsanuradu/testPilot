@@ -3,7 +3,7 @@
 
 ### Hi Suneet,
 Based on our previous discussion when you greatly pointed out the test inheritance issue for evolving/reusable components, I wrote this small repo trying to bring the test suite logic inside the component and in doing so allowing for the tests to be inherited while changeable with the component within the context  of their usage.<br />
-The tests are automaticaly written(development environment) inside the alocated test file named based on the name of the component's file name.
+The tests are automaticaly written(development environment) inside the alocated test file named based on the component's file name.
 
 ### testPilot runs on two files:
 - on the frontend - /client/src/testPilot/testPilot.js
