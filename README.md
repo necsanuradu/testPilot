@@ -77,6 +77,21 @@ test-suite = "name your test"
   ```
   http://localhost:3000/
   ```
+  
+  ### run testPilot in the context of another application
+  Copy these two files inside your new App
+    - on the frontend - /client/src/testPilot/testPilot.js
+    - on the backend - /routes/testThisAppBackendPut.js
+  
+  Please make sure that the route <br /><b>/routes/testThisAppBackendPut.js</b><br />
+  is declared and used in the backend <b>App.js<b> file adding these three lines.<br />
+  ```
+   var testAppGet = require("./routes/testThisAppBackendGet.js");
+   const cors = require("cors");
+   
+   app.use("/get", testAppGet);
+   ```
+   
   ### This repo comes with no tests, the test file will be automatically written once you run the project on your machine
   <b>Component in use as example at:</b>
   ```
