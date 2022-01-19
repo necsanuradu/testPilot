@@ -77,7 +77,7 @@ test-suite = "name your test"
   ```
   http://localhost:3000/
   ```
-  ### The repo comes with no test, the test file will be writtin once you run the project on your machine
+  ### This repo comes with no tests, the test file will be automatically written once you run the project on your machine
   <b>Component in use as example at:</b>
   ```
   /client/src/components/some-component-no-test.js
