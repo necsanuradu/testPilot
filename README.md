@@ -84,7 +84,7 @@ test-suite = "name your test"
     - on the backend - /routes/testThisAppBackendPut.js<br />
   
   Please make sure that the route <br /><b>/routes/testThisAppBackendPut.js</b><br />
-  is declared and used in the backend <b>App.js<b> file adding these three lines.<br />
+  is declared and used in the backend <b>app.js<b> file adding these three lines.<br />
   ```
    var testAppGet = require("./routes/testThisAppBackendGet.js");
    const cors = require("cors");
