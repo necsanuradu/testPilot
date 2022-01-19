@@ -89,6 +89,7 @@ test-suite = "name your test"
    var testAppGet = require("./routes/testThisAppBackendGet.js");
    const cors = require("cors");
    
+   app.use(cors());
    app.use("/get", testAppGet);
    ```
    
