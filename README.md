@@ -255,4 +255,4 @@ test("check mathPow() function value", () => {
 
 
   ```
-  ### HAVE FUN !
+  ### Thank you,
