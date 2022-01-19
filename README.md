@@ -14,7 +14,7 @@ The tests are automaticaly written(development environment) inside the alocated 
 testPilot.testSuite = {render:[],property:[],attribute:[],react:[],state:[],props{}}
 testPilot.render()
 testPilot.recordState()
-test-suite = "firstTest"
+test-suite = "name of your test"
 ```
 
 ### testPilot usage
@@ -22,7 +22,7 @@ test-suite = "firstTest"
 ```
    import testPilot from "../testPilot/test-pilot"
    ```
-2. Declare the test suite
+2. Declare a test suite
 ```
    testPilot.testSuite={
       firstTest:{
