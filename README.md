@@ -2,7 +2,7 @@
 ## Stack:  React + Express + Node.js
 
 ### Hi Suneet,
-Based on our previous discussion when you greatly pointed out the test inheritance issue for evolving/reusable components, I wrote this small repo trying to bring the test suite logic inside the component and in doing so allowing for the tests to be inherited while changeable with the component within the context of their usage.
+Based on our previous discussion when you accurately pointed out the test inheritance issue for evolving/reusable components, I wrote this small repo trying to bring the test suite logic inside the component and in doing so allowing for the tests to be inherited while changeable with the component within the context of their usage.
 The tests are automatically written(development environment) inside the allocated test file named based on the component's file name.
 
 ### testPilot runs on two files:
@@ -32,7 +32,7 @@ test-suite = "name your test"
       },
    }
    ```
-3. Trigger the testPilot execution by adding the <b>testPilot.render</b> on you return statement for you component
+3. Trigger the testPilot execution by adding the <b>testPilot.render</b> on you return statement for your component
 ```
    return testPilot.render(
      <div> 
