@@ -73,7 +73,16 @@ test-suite = "name your test"
       npm install
       npm start
   ```
-     
+  ### view it at
+  ```
+  http://localhost:3000/
+  ```
+  ### The repo comes with no test, the test file will be writtin once you run the project on your machine
+  <b>Component in use as example at:</b>
+  ```
+  /client/src/components/some-component-no-test.js
+  ```
+  
   ### Component example with tests avaiable in the testSuite
   ```
 import React, { useState, useEffect } from "react";
@@ -155,8 +164,8 @@ const SomeComponentForTestPilotNoTest = (props) => {
 export default SomeComponentForTestPilotNoTest;
 
   ```
-  #### the previous component and testPilot will generate exactly this test file for you
-  
+  #### The previous component and testPilot will automatically generate exactly this test file for you
+   you can find it newly made inside the <b>/client/src/test/</b> directory
   ```
 import { render, fireEvent, screen } from "@testing-library/react";
 import React, { Component } from "react";
@@ -230,3 +239,4 @@ test("check mathPow() function value", () => {
 
 
   ```
+  ### HAVE FUN !
