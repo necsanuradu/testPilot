@@ -34,7 +34,7 @@ test-suite = "name your test"
    ```
 3. Trigger the testPilot execution by adding the <b>testPilot.render</b> on you return statement for you component
 ```
-   return <b>testPilot.render</b>(
+   return testPilot.render(
      <div> 
         your component's rendered html
         <div className="card" test-suite="firstTest">{props.age}</div>
