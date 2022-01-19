@@ -14,7 +14,7 @@ The tests are automaticaly written(development environment) inside the alocated 
 testPilot.testSuite = {render:[],property:[],attribute:[],react:[],state:[],props{}}
 testPilot.render()
 testPilot.recordState()
-test-suite = "name of your test"
+test-suite = "name your test"
 ```
 
 ### testPilot usage
@@ -25,8 +25,10 @@ test-suite = "name of your test"
 2. Declare a test suite
 ```
    testPilot.testSuite={
-      firstTest:{
+      nameYourTest:{
+          test: "check element gets rendered when props.age is 29",
           render:["true"],
+          props:{age: 29},
       },
    }
    ```
