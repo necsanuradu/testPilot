@@ -1,11 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var fs = require("fs");
+const { send } = require("process");
 
-var toImport = [
-  'import { render, fireEvent, screen } from "@testing-library/react";',
-  'import React, { Component } from "react";',
-];
+let toImport = new Array();
 
 const beginMarkup = "// testPilot begin";
 const endMarkup = "// testPilot end";
@@ -84,7 +82,7 @@ const addTestPilotTests = (testFileContent, testSuite) => {
   return cleanLineBreaks(testFileContent) + testScript;
 };
 
-getExpectFor = {
+const getExpectFor = {
   Property: (expect) => {
     return `expect(field${
       expect[0] !== "" ? "." + expect[0] : ""
@@ -208,7 +206,7 @@ const buildTestFileContent = (testFileContent, testSuite, testPath) => {
   writeTestFileContent(testPath, testFileContent); //+ "\n red green refactor"
 };
 
-toImportComponentCreateTest = (componentPath, testPath, testSuite) => {
+const toImportComponentCreateTest = (componentPath, testPath, testSuite) => {
   fs.readFile(componentPath, function (err, componentFileContent) {
     if (err == null) {
       componentName = componentFileContent
@@ -239,11 +237,17 @@ const createTest = (testPath, testSuite) => {
     throw err;
   }
 };
-
+var testPath = "";
+var testSuite = "";
 router.post("/", function (req, res, next) {
-  const testPath = getTestFullPath(req.body.testPath, req.body.componentPath);
-  const testSuite = req.body.testSuite;
+  toImport = [
+    'import { render, fireEvent, screen } from "@testing-library/react";',
+    'import React, { Component } from "react";',
+  ];
+  testPath = getTestFullPath(req.body.testPath, req.body.componentPath);
+  testSuite = req.body.testSuite;
   toImportComponentCreateTest(req.body.componentPath, testPath, testSuite);
+  res.send("response");
 });
 
 module.exports = router;

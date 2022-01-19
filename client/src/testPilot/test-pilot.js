@@ -8,8 +8,10 @@ const logTestNotFound = (testName, component) => {
 
 var testPilot = {
   environment: "development",
+  componentPath: "",
   render: (component) => {
     testPilot.activeTests = [];
+    testPilot.componentPath = "";
     if (testPilot.environment === "development") {
       testPilot.componentPath = component["_source"].fileName;
       const container = document.createElement("div");
