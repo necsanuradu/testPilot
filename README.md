@@ -142,16 +142,16 @@ let mathPow = (value, pow) => {
 };
 
 const SomeComponentForTestPilotNoTest = (props) => {
-  instantiateTestsOrAnyOtherName();
+   instantiateTestsOrAnyOtherName();
 
-  const [color, setColor] = useState(props.color);
-  const [size, setSize] = useState(props.size);
+   const [color, setColor] = useState(props.color);
+   const [size, setSize] = useState(props.size);
 
-  useEffect(() => {
+   useEffect(() => {
     setSize(props.size);
-  });
+   });
 
-  return testPilot.render(
+   return testPilot.render(
     <div>
       <div className="card mx-5 bg-light" test-suite="fifthTest">
         <div
@@ -173,7 +173,7 @@ const SomeComponentForTestPilotNoTest = (props) => {
         )}
       </div>
     </div>
-  );
+   );
 };
 
 export default SomeComponentForTestPilotNoTest;
