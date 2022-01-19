@@ -32,7 +32,7 @@ test-suite = "name your test"
       },
    }
    ```
-3. Trigger the testPilot execution by adding the <b>testPilot.render</b> on you return statement for your component
+3. Trigger the testPilot execution by adding the <b>testPilot.render</b> on your return statement for your component
 ```
    return testPilot.render(
      <div> 
