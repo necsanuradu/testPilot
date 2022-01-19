@@ -1,9 +1,8 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import React, { Component } from "react";
-import SomeComponentForTestPilotNoTest from "../components/some-component-no-test";
+import SomeComponentForTestPilot from "../components/some-component";
 import testPilot from "../testPilot/test-pilot";
 testPilot.environment = "development-test";
-import SomeComponentForTestPilot from "../components/some-component";
 
 
 // testPilot begin [ thirdTest ]

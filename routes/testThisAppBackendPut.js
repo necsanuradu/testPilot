@@ -3,11 +3,8 @@ var router = express.Router();
 var fs = require("fs");
 const { send } = require("process");
 
-let toImport = new Array();
-
 const beginMarkup = "// testPilot begin";
 const endMarkup = "// testPilot end";
-var componentName;
 
 const getTestFullPath = (testPath, componentPath) => {
   return (
@@ -28,17 +25,23 @@ const writeTestFileContent = (testPath, testContent) => {
   });
 };
 
-const readTestFileContent = (testPath, testSuite) => {
+const readTestFileContent = (testPath, testSuite, componentName, toImport) => {
   fs.readFile(testPath, function (err, testFileContent) {
     if (err == null) {
-      buildTestFileContent(testFileContent.toString(), testSuite, testPath);
+      buildTestFileContent(
+        testFileContent.toString(),
+        testSuite,
+        testPath,
+        componentName,
+        toImport
+      );
     } else {
       throw err;
     }
   });
 };
 
-const checkImportedDependencies = (testFileContent) => {
+const checkImportedDependencies = (testFileContent, toImport) => {
   testFileContent = testFileContent
     .toString()
     .replace(/(\r\n|\r|\n)/g, "\n")
@@ -72,11 +75,12 @@ const cleanLineBreaks = (testFileContent) => {
   return testFileContent;
 };
 
-const addTestPilotTests = (testFileContent, testSuite) => {
+const addTestPilotTests = (testFileContent, testSuite, componentName) => {
   let testScript = "\n";
   testSuite.forEach((testBlock) => {
     testScript += `${beginMarkup} [ ${testBlock.testName} ]\n${getTestBody(
-      testBlock
+      testBlock,
+      componentName
     )}\n${endMarkup} \n\n`;
   });
   return cleanLineBreaks(testFileContent) + testScript;
@@ -181,7 +185,7 @@ const addTestSuiteProps = (set) => {
   return props.join("");
 };
 
-const getTestBody = (testBlock) => {
+const getTestBody = (testBlock, componentName) => {
   let indent = "    ";
   return testBlock.testGroups
     .map((set) => {
@@ -199,17 +203,32 @@ const getTestBody = (testBlock) => {
     .join("\n");
 };
 
-const buildTestFileContent = (testFileContent, testSuite, testPath) => {
-  testFileContent = checkImportedDependencies(testFileContent);
+const buildTestFileContent = (
+  testFileContent,
+  testSuite,
+  testPath,
+  componentName,
+  toImport
+) => {
+  testFileContent = checkImportedDependencies(testFileContent, toImport);
   testFileContent = clearTestPilotTests(testFileContent);
-  testFileContent = addTestPilotTests(testFileContent, testSuite);
+  testFileContent = addTestPilotTests(
+    testFileContent,
+    testSuite,
+    componentName
+  );
   writeTestFileContent(testPath, testFileContent); //+ "\n red green refactor"
 };
 
-const toImportComponentCreateTest = (componentPath, testPath, testSuite) => {
+const toImportComponentCreateTest = (
+  componentPath,
+  testPath,
+  testSuite,
+  toImport
+) => {
   fs.readFile(componentPath, function (err, componentFileContent) {
     if (err == null) {
-      componentName = componentFileContent
+      const componentName = componentFileContent
         .toString()
         .split("export default ")[1]
         .replace(/([,;]|\n)/g, " ")
@@ -219,34 +238,38 @@ const toImportComponentCreateTest = (componentPath, testPath, testSuite) => {
       toImport.push(`import testPilot from "../testPilot/test-pilot";`);
       toImport.push(`testPilot.environment = "development-test";`);
       toImport = [...new Set(toImport)];
-      createTest(testPath, testSuite);
+      createTest(testPath, testSuite, componentName, toImport);
     } else {
       throw err;
     }
   });
 };
 
-const createTest = (testPath, testSuite) => {
+const createTest = (testPath, testSuite, componentName, toImport) => {
   try {
     if (fs.existsSync(testPath)) {
-      readTestFileContent(testPath, testSuite);
+      readTestFileContent(testPath, testSuite, componentName, toImport);
     } else {
-      buildTestFileContent("", testSuite, testPath);
+      buildTestFileContent("", testSuite, testPath, componentName, toImport);
     }
   } catch (err) {
     throw err;
   }
 };
-var testPath = "";
-var testSuite = "";
+
 router.post("/", function (req, res, next) {
-  toImport = [
+  let toImport = [
     'import { render, fireEvent, screen } from "@testing-library/react";',
     'import React, { Component } from "react";',
   ];
-  testPath = getTestFullPath(req.body.testPath, req.body.componentPath);
-  testSuite = req.body.testSuite;
-  toImportComponentCreateTest(req.body.componentPath, testPath, testSuite);
+  const testPath = getTestFullPath(req.body.testPath, req.body.componentPath);
+  const testSuite = req.body.testSuite;
+  toImportComponentCreateTest(
+    req.body.componentPath,
+    testPath,
+    testSuite,
+    toImport
+  );
   res.send("response");
 });
 
