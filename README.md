@@ -1,5 +1,5 @@
 # testPilot
-## stack:  React + Express + Node.js
+## Stack:  React + Express + Node.js
 
 ### Hi Suneet,
 Based on our previous discussion when you greatly pointed out the test inheritance issue for evolving/reusable components, I wrote this small repo trying to bring the test suite logic inside the component and in doing so allowing for the tests to be inherited while changeable with the component within the context of their usage.
@@ -79,9 +79,9 @@ test-suite = "name your test"
   ```
   
   ### run testPilot in the context of another application
-  Copy these two files inside your new App
-    - on the frontend - /client/src/testPilot/testPilot.js
-    - on the backend - /routes/testThisAppBackendPut.js
+  Copy these two files to your new App<br />
+    - on the frontend - /client/src/testPilot/testPilot.js<br />
+    - on the backend - /routes/testThisAppBackendPut.js<br />
   
   Please make sure that the route <br /><b>/routes/testThisAppBackendPut.js</b><br />
   is declared and used in the backend <b>App.js<b> file adding these three lines.<br />
