@@ -86,11 +86,11 @@ test-suite = "name your test"
   Please make sure that the route <br /><b>/routes/testThisAppBackendPut.js</b><br />
   is declared and used in the backend <b>app.js<b> file adding these three lines.<br />
   ```
-   var testAppGet = require("./routes/testThisAppBackendGet.js");
+   var testAppPut = require("./routes/testThisAppBackendPut.js");
    const cors = require("cors");
    
    app.use(cors());
-   app.use("/get", testAppGet);
+   app.use("/put", testAppPut);
    ```
    
   ### This repo comes with no tests, the test file will be automatically written once you run the project on your machine
