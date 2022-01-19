@@ -180,7 +180,7 @@ export default SomeComponentForTestPilotNoTest;
 
   ```
   #### The previous component and testPilot will automatically generate exactly this test file for you
-   you can find it newly made inside the <b>/client/src/test/</b> directory
+   you can find it newly made inside the <b>/client/src/tests/</b> directory
   ```
 import { render, fireEvent, screen } from "@testing-library/react";
 import React, { Component } from "react";
